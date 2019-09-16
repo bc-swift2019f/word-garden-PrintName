@@ -17,6 +17,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var playAgainButton: UIButton!
     @IBOutlet weak var flowerImageView: UIImageView!
     
+    var wordToGuess = "Swift"
+    var lettersGuessed = "XWET"
+    var revealedWord = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         guessLetterButton.isEnabled = false
@@ -42,6 +46,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction func guessLetterButtonPressed(_ sender: UIButton) {
+        for letter in wordToGuess.uppercased() {
+            if lettersGuessed.contains(String(letter)) {
+                revealedWord = revealedWord + "\(letter)"
+            }
+            else {
+                revealedWord = revealedWord + " _"
+            }
+        }
         updateUIAfterGuess()
     }
     
